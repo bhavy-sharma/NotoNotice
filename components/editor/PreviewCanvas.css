@@ -1,41 +1,196 @@
 /* src/components/editor/PreviewCanvas.css */
 
-.a4 {
+.a4-print-safe {
   width: 210mm;
   min-height: 297mm;
-  padding: 25mm 20mm; /* Top/bottom more generous */
+  padding: 25mm 20mm;
   margin: 0 auto;
-  background: white;
-  font-family: var(--font-family, 'Noto Serif', serif);
+  background: #ffffff;
+  font-family: var(--font-family, 'Noto Serif'), serif;
   font-size: var(--font-size, 14px);
   line-height: 1.6;
-  color: #000; /* Force black text */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  color: #000000;
   position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Ensure all text is black — override any global dark mode */
-.a4 *,
-.a4 *::before,
-.a4 *::after {
-  color: #000 !important;
+/* Force all text to black */
+.a4-print-safe *,
+.a4-print-safe *::before,
+.a4-print-safe *::after {
+  color: #000000 !important;
   background: transparent !important;
-  border-color: currentColor !important;
+  border-color: #000000 !important;
 }
 
-/* Print styles */
+/* Header */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.logo-container {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 100%;
+  object-fit: contain;
+}
+
+.org-info {
+  text-align: center;
+  flex-grow: 1;
+  padding: 0 16px;
+}
+
+.org-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  color: #000000;
+}
+
+.branch-name {
+  font-size: 14px;
+  margin: 4px 0 0;
+  color: #000000;
+}
+
+.notice-date {
+  font-size: 14px;
+  margin: 4px 0 0;
+  color: #000000;
+}
+
+.spacer {
+  width: 96px;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #000000;
+  margin: 24px 0;
+}
+
+.notice-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 24px;
+  color: #000000;
+}
+
+/* Blocks */
+.content-blocks {
+  margin-bottom: 48px;
+}
+
+.formal-text {
+  margin: 0 0 16px;
+  color: #000000;
+}
+
+.bullet-list {
+  list-style-type: disc;
+  padding-left: 24px;
+  margin: 0 0 16px;
+  color: #000000;
+}
+
+.bullet-item {
+  margin-bottom: 4px;
+  color: #000000;
+}
+
+.links-block {
+  margin: 0 0 16px;
+  color: #000000;
+}
+
+.link-item {
+  margin-bottom: 8px;
+  color: #000000;
+}
+
+.link-url {
+  text-decoration: underline;
+  color: #000000 !important;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 0 0 16px;
+}
+
+.notice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-cell {
+  border: 1px solid #000000;
+  padding: 8px;
+  color: #000000;
+  min-width: 80px;
+}
+
+.empty-cell {
+  color: #999999;
+}
+
+/* 📄 FOOTER - LEFT SIDE */
+.footer-left {
+  position: absolute;
+  bottom: 60px; /* Adjust as needed */
+  left: 40px;   /* From left edge */
+  max-width: 256px;
+  text-align: left;
+}
+
+.signature-container {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.digital-signature {
+  height: 40px;
+  object-fit: contain;
+}
+
+.signatory-name {
+  font-weight: bold;
+  color: #000000;
+  font-size: 14px;
+  text-align: center;
+}
+
+.signatory-designation {
+  color: #000000;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 🔴 STAMP - BOTTOM RIGHT CORNER */
+.official-stamp {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  right: 30px;
+  bottom: 40px;
+  pointer-events: none;
+  transform: scale(0.9); /* Default scale */
+  opacity: 0.9;
+}
+
+/* Print */
 @media print {
-  .a4 {
+  .a4-print-safe {
     box-shadow: none;
-    margin: 0;
-    padding: 20mm;
-  }
-}
-
-/* Make links printable (no color dependency) */
-@media print {
-  .a4 a {
-    color: #000 !important;
-    text-decoration: underline !important;
   }
 }

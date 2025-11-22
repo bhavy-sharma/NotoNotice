@@ -1,22 +1,29 @@
 import { create } from 'zustand';
 
-export const useNoticeStore = create((set) => ({
-  // Initial notice structure
-  notice: {
-    id: '',
-    orgName: '',
-    title: '',
-    date: new Date().toISOString().split('T')[0],
-    logo: null,
-    blocks: [],
-    signature: null,
-    stamp: null,
-    styles: {
-      font: 'Noto Serif',
-      fontSize: '14px',
-      primaryColor: '#000'
-    }
+// Define initial state separately for reuse
+const initialNotice = {
+  id: '',
+  orgName: '',
+  branch: '',
+  title: '',
+  date: new Date().toISOString().split('T')[0],
+  logo: null,
+  blocks: [],
+  signatory: {
+    name: '',
+    designation: ''
   },
+  signature: null,   // for digital signature (image or drawn)
+  stamp: null,      // for official stamp
+  styles: {
+    font: 'Noto Serif',
+    fontSize: '14px',
+    primaryColor: '#000'
+  }
+};
+
+export const useNoticeStore = create((set) => ({
+  notice: initialNotice,
 
   // Actions
   setNotice: (partial) => set((state) => ({
@@ -43,20 +50,6 @@ export const useNoticeStore = create((set) => ({
   }),
 
   reset: () => set({
-    notice: {
-      id: '',
-      orgName: '',
-      title: '',
-      date: new Date().toISOString().split('T')[0],
-      logo: null,
-      blocks: [],
-      signature: null,
-      stamp: null,
-      styles: {
-        font: 'Noto Serif',
-        fontSize: '14px',
-        primaryColor: '#000'
-      }
-    }
+    notice: { ...initialNotice, date: new Date().toISOString().split('T')[0] }
   })
 }));
