@@ -29,11 +29,11 @@ export default function FormalBlock({ content, onChange }) {
   return (
     <div className="space-y-2">
       {/* Toolbar */}
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         <button
           type="button"
           onClick={() => insertFormatting('**', '**')}
-          className="px-2 py-1 text-xs bg-gray-200 hover:bg-gray-300 rounded"
+          className="px-4 py-0.5 ml-4 text-xs bg-black-200 hover:bg-amber-900 rounded"
           title="Bold (Markdown: **text**)"
         >
           <strong>B</strong>
@@ -41,7 +41,7 @@ export default function FormalBlock({ content, onChange }) {
         <button
           type="button"
           onClick={() => insertFormatting('*', '*')}
-          className="px-2 py-1 text-xs bg-gray-200 hover:bg-gray-300 rounded"
+          className="px-4 py-0.5  text-xs bg-black-200 hover:bg-amber-900 rounded"
           title="Italic (Markdown: *text*)"
         >
           <em>I</em>
