@@ -1,7 +1,16 @@
+// src/components/editor/PreviewCanvas.js
+
 'use client';
 
 import { useNoticeStore } from '@/store/noticeStore';
 import './PreviewCanvas.css';
+
+// Convert Markdown-like syntax to HTML
+const markdownToHtml = (text) => {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // **bold**
+    .replace(/\*(.*?)\*/g, '<em>$1</em>');            // *italic*
+};
 
 export default function PreviewCanvas() {
   const { notice } = useNoticeStore();
@@ -41,15 +50,33 @@ export default function PreviewCanvas() {
       <div className="content-blocks">
         {notice.blocks.map((block, i) => {
           if (block.type === 'formal') {
-            return <p key={i} className="formal-text">{block.content || 'Enter formal message...'}</p>;
+            return (
+              <p
+                key={i}
+                className="formal-text"
+                dangerouslySetInnerHTML={{
+                  __html: markdownToHtml(block.content || 'Enter formal message...')
+                }}
+              />
+            );
           }
+
+          // Inside PreviewCanvas.js → notice.blocks.map()
 
           if (block.type === 'bullet') {
             return (
               <ul key={i} className="bullet-list">
-                {block.items.filter(item => item.trim()).map((item, j) => (
-                  <li key={j} className="bullet-item">{item}</li>
-                ))}
+                {block.items
+                  .filter(item => item.trim())
+                  .map((item, j) => (
+                    <li
+                      key={j}
+                      className="bullet-item"
+                      dangerouslySetInnerHTML={{
+                        __html: markdownToHtml(item)
+                      }}
+                    />
+                  ))}
               </ul>
             );
           }
@@ -60,7 +87,14 @@ export default function PreviewCanvas() {
                 {block.items.filter(item => item.title || item.url).map((link, j) => (
                   <div key={j} className="link-item">
                     <strong>{link.title || 'Link'}:</strong>{' '}
-                    <span className="link-url">{link.url}</span>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-url"
+                    >
+                      {link.url}
+                    </a>
                   </div>
                 ))}
               </div>
@@ -91,7 +125,7 @@ export default function PreviewCanvas() {
         })}
       </div>
 
-      {/* ✍️ OFFICIAL FOOTER - LEFT SIDE */}
+      {/* Footer */}
       {(notice.signatory?.name || notice.signature) && (
         <div className="footer-left">
           {notice.signature && (
@@ -112,7 +146,7 @@ export default function PreviewCanvas() {
         </div>
       )}
 
-      {/* 🔴 STAMP - RIGHT SIDE (Bottom Right Corner) */}
+      {/* Stamp */}
       {notice.stamp && (
         <img
           src={notice.stamp.src}

@@ -207,14 +207,14 @@ export default function MetaForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <input
               type="text"
-              placeholder="Name (e.g., Dr. A.K. Sharma)"
+              placeholder="Name (e.g., Bhavy Sharma)"
               value={notice.signatory?.name || ''}
               onChange={(e) => setNotice({ signatory: { ...notice.signatory, name: e.target.value } })}
               className="w-full p-2.5 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-700 text-gray-900 dark:text-white"
             />
             <input
               type="text"
-              placeholder="Designation (e.g., Principal)"
+              placeholder="Designation (e.g., CEO)"
               value={notice.signatory?.designation || ''}
               onChange={(e) => setNotice({ signatory: { ...notice.signatory, designation: e.target.value } })}
               className="w-full p-2.5 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-700 text-gray-900 dark:text-white"
@@ -279,7 +279,7 @@ export default function MetaForm() {
                 setNotice({
                   stamp: {
                     src: ev.target.result,
-                    x: 440,   // default: bottom-right
+                    x: 440,
                     y: 520,
                     scale: 0.9
                   }
