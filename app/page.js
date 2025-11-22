@@ -1,48 +1,35 @@
 import Link from 'next/link';
-import { FaFileSignature, FaHistory, FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-black flex flex-col items-center justify-center px-4 py-12">
-      <main className="w-full max-w-2xl bg-white dark:bg-zinc-900 rounded-xl shadow-lg overflow-hidden border border-zinc-200 dark:border-zinc-800">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-center">
-          <h1 className="text-2xl font-bold text-white drop-shadow">NotoNotice</h1>
-          <p className="text-blue-100 text-sm mt-1">Create, preview & export professional notices</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-zinc-900 dark:to-black flex flex-col items-center justify-center px-4 py-12">
+      <main className="w-full max-w-2xl text-center">
+        {/* Logo / Brand */}
+        <div className="mb-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-600 text-white mb-4 shadow-lg">
+            <span className="text-2xl font-bold">NB</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-700 to-indigo-800 bg-clip-text text-transparent">
+            NotoNotice
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2 max-w-md mx-auto">
+            Create professional, print-ready notices in minutes
+          </p>
         </div>
 
-        {/* Actions */}
-        <div className="p-6 space-y-4">
-          <Link
-            href="/notice/new"
-            className="flex items-center gap-4 p-4 bg-blue-50 hover:bg-blue-100 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-lg transition-colors w-full"
-          >
-            <div className="bg-blue-100 dark:bg-blue-900/50 p-3 rounded-full text-blue-600 dark:text-blue-300">
-              <FaPlusCircle size={24} />
-            </div>
-            <div>
-              <h2 className="font-semibold text-lg text-gray-800 dark:text-white">Create New Notice</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Start from scratch with logo, blocks & signature</p>
-            </div>
-          </Link>
+        {/* Primary CTA */}
+        <Link
+          href="/notice/new"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+        >
+          <FaPlusCircle size={20} />
+          Create New Notice
+        </Link>
 
-          <Link
-            href="/saved"
-            className="flex items-center gap-4 p-4 bg-gray-50 hover:bg-gray-100 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-lg transition-colors w-full"
-          >
-            <div className="bg-gray-200 dark:bg-gray-700 p-3 rounded-full text-gray-700 dark:text-gray-300">
-              <FaHistory size={24} />
-            </div>
-            <div>
-              <h2 className="font-semibold text-lg text-gray-800 dark:text-white">Saved Notices</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Edit, duplicate or download your drafts</p>
-            </div>
-          </Link>
-        </div>
-
-        {/* Footer note */}
-        <div className="px-6 py-3 text-center text-xs text-gray-500 dark:text-gray-500 border-t border-zinc-200 dark:border-zinc-800">
-          Export as PDF or JPG • A4 Print Ready • Bhia Yukta © {new Date().getFullYear()}
+        {/* Footer Note */}
+        <div className="mt-16 text-xs text-gray-500 dark:text-gray-500">
+          <p>Export as PDF or JPG • A4 Print Ready • Noto Notice © {new Date().getFullYear()}</p>
         </div>
       </main>
     </div>
