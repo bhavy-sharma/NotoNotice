@@ -1,4 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
+
+// In src/app/layout.js
+import '@fontsource/noto-serif'; // npm install @fontsource/noto-serifimport { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({

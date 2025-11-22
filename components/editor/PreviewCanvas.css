@@ -1,0 +1,18 @@
+.a4 {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  margin: 0 auto;
+  background: white;
+  font-family: var(--font-family, 'Noto Serif');
+  font-size: var(--font-size, 14px);
+  line-height: 1.6;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+@media print {
+  .a4 {
+    box-shadow: none;
+    margin: 0;
+  }
+}
